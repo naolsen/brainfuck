@@ -1,0 +1,8 @@
+Package: brainfuck
+Type: Package
+Title: R interpreter for brainfuck
+Version: 1.0.0
+Date: 2015-12-30
+Author: Niels Olsen
+Description: An R interpreter for brainfuck. Includes debugging and possibility control of I/O
+RoxygenNote: 6.1.1
