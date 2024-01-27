@@ -4,9 +4,14 @@
 \alias{brainfuck}
 \title{Brainfuck}
 \usage{
-brainfuck(code, memory = 1024, debug = 0, input = function()
-  utf8ToInt(scan(n = 1, what = character(), strip.white = FALSE, quiet =
-  TRUE, sep = "\\n"))[1], output = function(i) cat(intToUtf8(i)))
+brainfuck(
+  code,
+  memory = 1024,
+  debug = 0,
+  input = function() utf8ToInt(scan(n = 1, what = character(), strip.white = FALSE, quiet
+    = TRUE, sep = "\\n"))[1],
+  output = function(i) cat(intToUtf8(i))
+)
 }
 \arguments{
 \item{code}{Brainfuck code}
@@ -22,12 +27,25 @@ brainfuck(code, memory = 1024, debug = 0, input = function()
 \description{
 R interpreter for the esoteric programming language "Brainfuck"
 }
+\details{
+Please see \link{https://en.wikipedia.org/wiki/Brainfuck} for an introduction to Brainfuck. Brainfuck code consists of the eight characters
+"\code{+-<>.,\[\]}", all other characters are ignored. "d" is a special debug character only used if debug is active. 
+
+Implementation details: The data range is \code{[0, 255]}. 0-1 = 255, ie. if you decrement a "0", you will get 255.
+The pointer always starts at 1; valid pointer positions are \code{[1, memory]}. Exceeding this range will throw an error.
+
+I/O: the default input behaviour is to read a single character (and ignore the rest) and convert it from ASCII to integer.
+The default output behaviour is to convert the value to ASCII and print the result using \code{cat} 
+(note: the letters of the alphabet start at 65 and the numbers at 48).
+
+Debug: When debug is on, the character "d" flags a debug: the console prints the current data, pointer position and code position.
+}
 \examples{
 ## Prints 'Hello World!'
 brainfuck("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]
 >>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.")
 
-## Read two input characters and print them (note: not the shortest way of doing this)
+## Reads two input characters and prints them (note: not the shortest way of doing this)
 brainfuck(",>,<.>.")
 
 ## A simple example with debug active (the code prints the letter "H")

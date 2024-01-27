@@ -1,8 +1,6 @@
 
 
 
-
-
 #' Brainfuck
 #'
 #' R interpreter for the esoteric programming language "Brainfuck"
@@ -14,10 +12,10 @@
 #' @param output Output function
 #'
 #' @details 
-#' Please eee \link{https://en.wikipedia.org/wiki/Brainfuck} for an introduction to Brainfuck. Brainfuck code consists of the eight characters
-#' "\code{+-<>.,[]}", all other characters are ignored. "d" is a special debug character only used if debug is active. 
+#' Please see \link{https://en.wikipedia.org/wiki/Brainfuck} for an introduction to Brainfuck. Brainfuck code consists of the eight characters
+#' "\code{+-<>.,\[\]}", all other characters are ignored. "d" is a special debug character only used if debug is active. 
 #' 
-#' Implementation details: The data range is \code[0, 255]}. 0-1 = 255, ie. if you decrement a "0", you will get 255.
+#' Implementation details: The data range is \code{[0, 255]}. 0-1 = 255, ie. if you decrement a "0", you will get 255.
 #' The pointer always starts at 1; valid pointer positions are \code{[1, memory]}. Exceeding this range will throw an error.
 #' 
 #' I/O: the default input behaviour is to read a single character (and ignore the rest) and convert it from ASCII to integer.
@@ -33,7 +31,7 @@
 #' brainfuck("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]
 #' >>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.")
 #' 
-#' ## Read two input characters and print them (note: not the shortest way of doing this)
+#' ## Reads two input characters and prints them (note: not the shortest way of doing this)
 #' brainfuck(",>,<.>.")
 #' 
 #' ## A simple example with debug active (the code prints the letter "H")
@@ -44,7 +42,7 @@ brainfuck <- function(code, memory = 1024, debug = 0,
                       output = function(i) cat(intToUtf8(i))) {
   
   check.input <- function(i) if (!is.integer(i) || length(i) > 1 || i < 0 || i > 255) stop("Input error") else i
-  
+   
   data <- integer(memory)
   pointer <- 1
   
@@ -73,7 +71,7 @@ brainfuck <- function(code, memory = 1024, debug = 0,
         cat("code position: ", i, "\n")
       }
       if (pointer == memory + 1) stop("Index error: memory limit exceeded")
-      else stop("Index error")
+      else stop("Index error: pointer below minimum")
     }
     else if (data[pointer] == -1) data[pointer] <- 255
     else if (data[pointer] == 256) data[pointer] <- 0
