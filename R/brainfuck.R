@@ -13,7 +13,7 @@
 #'
 #' @details 
 #' Please see \link{https://en.wikipedia.org/wiki/Brainfuck} for an introduction to Brainfuck. Brainfuck code consists of the eight characters
-#' "\code{+-<>.,\[\]}", all other characters are ignored. "d" is a special debug character only used if debug is active. 
+#' "\code{+-<>.,[]}", all other characters are ignored. "d" is a special debug character only used if debug is active. 
 #' 
 #' Implementation details: The data range is \code{[0, 255]}. 0-1 = 255, ie. if you decrement a "0", you will get 255.
 #' The pointer always starts at 1; valid pointer positions are \code{[1, memory]}. Exceeding this range will throw an error.
