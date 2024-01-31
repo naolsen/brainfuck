@@ -28,7 +28,7 @@ brainfuck(
 R interpreter for the esoteric programming language "Brainfuck"
 }
 \details{
-Please see \link{https://en.wikipedia.org/wiki/Brainfuck} for an introduction to Brainfuck. Brainfuck code consists of the eight characters
+Please see \url{https://en.wikipedia.org/wiki/Brainfuck} for an introduction to Brainfuck. Brainfuck code consists of the eight characters
 "\code{+-<>.,[]}", all other characters are ignored. "d" is a special debug character only used if debug is active. 
 
 Implementation details: The data range is \code{[0, 255]}. 0-1 = 255, ie. if you decrement a "0", you will get 255.
@@ -45,8 +45,9 @@ Debug: When debug is on, the character "d" flags a debug: the console prints the
 brainfuck("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]
 >>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.")
 
+\dontrun{
 ## Reads two input characters and prints them (note: not the shortest way of doing this)
-brainfuck(",>,<.>.")
+brainfuck(",>,<.>.")}
 
 ## A simple example with debug active (the code prints the letter "H")
 brainfuck("++++++++d[>+++++++++<-]d>.", debug = 1)
